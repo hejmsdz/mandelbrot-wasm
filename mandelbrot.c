@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 #define scale(val, max0, min1, max1) ((double)(val)*((max1)-(min1))/(max0) + (min1))
 #define STEPS 50
 
@@ -24,16 +22,6 @@ void generatePalette(int color0, int color1) {
         struct color c = {scale(i, STEPS, r0, r1), scale(i, STEPS, g0, g1), scale(i, STEPS, b0, b1)};
         palette[i] = c;
     }
-}
-
-int main() {
-    generatePalette(0x3b4371, 0xf3904f);
-
-    int i;
-    for (i=0; i<=STEPS; i++) {
-        printf("{r:%d, g:%d, b:%d},\n", palette[i].r, palette[i].g, palette[i].b);
-    }
-    return 0;
 }
 
 void mandelbrot(int width, int height, double cx, double cy, double scale, unsigned char *imgdata) {
