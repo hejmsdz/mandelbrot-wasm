@@ -4,8 +4,15 @@ console.log('Fetching module...');
 
 fetch('./mandelbrot.wasm')
 	.then(resp => {
-		console.log('Download complete');
-		return resp.arrayBuffer();
+		if (resp.ok) {
+			console.log('Download complete');
+			return resp.arrayBuffer();
+		} else {
+			console.error('Fetch failed', resp);
+		}
+	})
+	.catch(error => {
+		console.error(error);
 	})
 	.then(code => {
 		console.log('Instantiating module...');
