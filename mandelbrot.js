@@ -80,12 +80,13 @@ fetch('./mandelbrot.wasm')
 
 		const gentime = document.getElementById('gentime');
 		const coords = document.getElementById('coords');
+		const imgData = new ImageData(imgDataArray, width, height);
 
 		function draw() {
 		    let t0 = performance.now();
 		    mandelbrot(width, height, cx, cy, scale, 300);
 		    let t1 = performance.now();
-		    ctx.putImageData(new ImageData(imgDataArray, width, height), 0, 0);
+		    ctx.putImageData(imgData, 0, 0);
 
 		    gentime.innerHTML = Math.round(t1-t0);
 		    coords.innerHTML = JSON.stringify({cx, cy, scale});
